@@ -2,6 +2,7 @@
 **/*.o
 **/*.s
 src/.depend
+*.pyc
 
 # Built binary
 src/stockfish*
@@ -28,3 +29,7 @@ pyffish.egg-info
 # IDEs
 .vscode
 .idea
+
+# Bugfish text files
+bugfish/*.txt
+bugfish/*.bpgn
