@@ -1,3 +1,7 @@
+# Bugfish
+
+Bugfish is a modified Fairy-Stockfish which, in bughouse mode, allows virtual piece drops based on known future flow from the partner's board.
+
 # Fairy-Stockfish
 
 ## Overview
