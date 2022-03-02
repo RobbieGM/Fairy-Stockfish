@@ -2491,6 +2491,7 @@ bool Position::is_immediate_game_end(Value& result, int ply) const {
       result = mate_in(ply);
       return true;
   }
+  /*
   // Failing to checkmate with virtual pieces is a loss
   if (two_boards() && !checkers())
   {
@@ -2504,6 +2505,7 @@ bool Position::is_immediate_game_end(Value& result, int ply) const {
           return true;
       }
   }
+  */
 
   return false;
 }
@@ -2726,6 +2728,21 @@ bool Position::pos_is_ok() const {
       }
 
   return true;
+}
+
+bool Position::allow_virtual_drop(Color c, PieceType pt) const {
+  assert(two_boards());
+  // Do we allow a virtual drop?
+  std::string flow = Options["Flow"];
+  double flowRate = Options["FlowRate"];
+  size_t partnerGamePly = flowRate * gamePly;
+  int piecesPassed = 0; // Number of pieces passed since the beginning of the partner's game with type pt
+  for (size_t i = 0; i < partnerGamePly && i < flow.length(); i++) {
+    if (piece_to_char()[make_piece(c, pt)] == flow[i]) {
+      piecesPassed++;
+    }
+  }
+  return count_in_hand(c, pt) > -piecesPassed;
 }
 
 } // namespace Stockfish

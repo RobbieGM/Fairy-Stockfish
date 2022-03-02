@@ -208,6 +208,8 @@ void init(OptionsMap& o) {
   o["TsumeMode"]             << Option(false);
   o["VariantPath"]           << Option("<empty>", on_variant_path);
   o["usemillisec"]           << Option(true); // time unit for UCCI
+  o["Flow"]                  << Option("");
+  o["FlowRate"]              << Option(1, 0, 3);
 }
 
 

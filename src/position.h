@@ -828,6 +828,7 @@ inline Value Position::checkmate_value(int ply) const {
       // Niol
       return VALUE_DRAW;
   }
+  /* Commented to remove penalty for using virtual pieces to mate
   // Checkmate using virtual pieces
   if (two_boards() && var->checkmateValue < VALUE_ZERO)
   {
@@ -838,6 +839,7 @@ inline Value Position::checkmate_value(int ply) const {
       if (virtualMaterial > 0)
           return -VALUE_VIRTUAL_MATE + virtualMaterial / 20 + ply;
   }
+  */
   // Return mate value
   return convert_mate_value(var->checkmateValue, ply);
 }
@@ -1293,6 +1295,7 @@ inline bool Position::bikjang() const {
   return st->bikjang;
 }
 
+/*
 inline bool Position::allow_virtual_drop(Color c, PieceType pt) const {
   assert(two_boards());
   // Do we allow a virtual drop?
@@ -1302,6 +1305,7 @@ inline bool Position::allow_virtual_drop(Color c, PieceType pt) const {
                         && count_in_hand(c, ROOK) >= 0
                         && count_in_hand(c, QUEEN) >= 0);
 }
+*/
 
 inline Value Position::material_counting_result() const {
   auto weigth_count = [this](PieceType pt, int v){ return v * (count(WHITE, pt) - count(BLACK, pt)); };
