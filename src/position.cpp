@@ -2737,8 +2737,9 @@ bool Position::allow_virtual_drop(Color c, PieceType pt) const {
   double flowRate = Options["FlowRate"];
   size_t partnerGamePly = flowRate * gamePly;
   int piecesPassed = 0; // Number of pieces passed since the beginning of the partner's game with type pt
+  Stockfish::Piece piece = make_piece(c, pt);
   for (size_t i = 0; i < partnerGamePly && i < flow.length(); i++) {
-    if (piece_to_char()[make_piece(c, pt)] == flow[i]) {
+    if (piece_to_char()[piece] == flow[i]) {
       piecesPassed++;
     }
   }
